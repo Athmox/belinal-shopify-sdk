@@ -93,6 +93,7 @@ import com.shopify.model.ShopifyRecurringApplicationChargeRoot;
 import com.shopify.model.ShopifyRefund;
 import com.shopify.model.ShopifyRefundCreationRequest;
 import com.shopify.model.ShopifyRefundRoot;
+import com.shopify.model.ShopifySdkParam;
 import com.shopify.model.ShopifyShop;
 import com.shopify.model.ShopifyTransaction;
 import com.shopify.model.ShopifyTransactionsRoot;
@@ -449,6 +450,19 @@ public class ShopifySdk {
 	public ShopifyPage<ShopifyProduct> getProducts(final String pageInfo, final int pageSize) {
 		final Response response = get(getWebTarget().path(PRODUCTS).queryParam(LIMIT_QUERY_PARAMETER, pageSize)
 				.queryParam(PAGE_INFO_QUERY_PARAMETER, pageInfo));
+		final ShopifyProductsRoot shopifyProductsRoot = response.readEntity(ShopifyProductsRoot.class);
+		return mapPagedResponse(shopifyProductsRoot.getProducts(), response);
+	}
+
+	public ShopifyPage<ShopifyProduct> getProducts(final ShopifySdkParam... params) {
+
+		WebTarget webTarget = getWebTarget().path(PRODUCTS);
+
+		for (ShopifySdkParam param : params) {
+			webTarget = webTarget.queryParam(param.getQueryParameter(), param.getValue());
+		}
+
+		final Response response = get(webTarget);
 		final ShopifyProductsRoot shopifyProductsRoot = response.readEntity(ShopifyProductsRoot.class);
 		return mapPagedResponse(shopifyProductsRoot.getProducts(), response);
 	}

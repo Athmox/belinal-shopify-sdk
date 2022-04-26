@@ -2,15 +2,13 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>at.scheider.it</groupId>
-	<artifactId>belinal-shopify-sdk</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	
-	<!-- Forked from com.channelape - shopify-sdk - 2.4.3 -->
+	<groupId>com.channelape</groupId>
+	<artifactId>shopify-sdk</artifactId>
+	<version>2.4.3</version>
 
-	<name>Belinal Shopify SDK</name>
+	<name>Shopify SDK</name>
 	<description>Java SDK for Shopify REST API.</description>
-	<url>https://github.com/Athmox/belinal-shopify-sdk</url>
+	<url>https://github.com/channelape/shopify-sdk</url>
 
 	<licenses>
 		<license>
@@ -34,10 +32,6 @@
 			<name>Ryan Kazokas</name>
 			<email>rkazokas@channelape.com</email>
 			<organizationUrl>https://channelape.com</organizationUrl>
-		</developer>
-		<developer>
-			<name>Markus Scheider</name>
-			<email>markus@scheider.it</email>
 		</developer>
 	</developers>
 
