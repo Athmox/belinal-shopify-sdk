@@ -733,6 +733,14 @@ public class ShopifySdk {
 		return shopifyOrderRootResponse.getOrder();
 	}
 
+	public ShopifyOrder createOrder(final ShopifyOrder shopifyOrderToCreate) {
+		final ShopifyOrderRoot shopifyOrderRoot = new ShopifyOrderRoot();
+		shopifyOrderRoot.setOrder(shopifyOrderToCreate);
+		final Response response = post(buildOrdersEndpoint(), shopifyOrderRoot);
+		final ShopifyOrderRoot shopifyOrderRootResponse = response.readEntity(ShopifyOrderRoot.class);
+		return shopifyOrderRootResponse.getOrder();
+	}
+
 	public ShopifyOrder updateOrderShippingAddress(
 			final ShopifyOrderShippingAddressUpdateRequest shopifyOrderUpdateRequest) {
 		final ShopifyOrderUpdateRoot shopifyOrderRoot = new ShopifyOrderUpdateRoot();

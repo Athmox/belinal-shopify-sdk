@@ -81,8 +81,13 @@ public class ShopifyOrder {
 	private String processingMethod;
 	@XmlElement(name = "source_name")
 	private String sourceName;
+	@XmlElement(name = "source_identifier")
+	private String sourceIdentifier;
+	@XmlElement(name = "source_url")
+	private String sourceUrl;
 	@XmlElement(name = "fulfillment_status")
 	private String fulfillmentStatus;
+	private String gateway;
 	@XmlElement(name = "tags")
 	private String tags;
 	@XmlElement(name = "order_status_url")
@@ -103,6 +108,12 @@ public class ShopifyOrder {
 	private List<ShopifyAttribute> noteAttributes = new LinkedList<>();
 	private List<ShopifyRefund> refunds = new LinkedList<>();
 	private List<Metafield> metafields = new LinkedList<>();
+	@XmlElement(name = "inventory_behaviour")
+	private String inventoryBehaviour;
+	@XmlElement(name = "send_receipt")
+	private boolean sendReceipt;
+	@XmlElement(name = "send_fulfillment_receipt")
+	private boolean sendFulfillmentReceipt;
 
 	public String getId() {
 		return id;
@@ -352,12 +363,36 @@ public class ShopifyOrder {
 		this.sourceName = sourceName;
 	}
 
+	public String getSourceIdentifier() {
+		return sourceIdentifier;
+	}
+
+	public void setSourceIdentifier(String sourceIdentifier) {
+		this.sourceIdentifier = sourceIdentifier;
+	}
+
+	public String getSourceUrl() {
+		return sourceUrl;
+	}
+
+	public void setSourceUrl(String sourceUrl) {
+		this.sourceUrl = sourceUrl;
+	}
+
 	public String getFulfillmentStatus() {
 		return fulfillmentStatus;
 	}
 
 	public void setFulfillmentStatus(final String fulfillmentStatus) {
 		this.fulfillmentStatus = fulfillmentStatus;
+	}
+
+	public String getGateway() {
+		return gateway;
+	}
+
+	public void setGateway(String gateway) {
+		this.gateway = gateway;
 	}
 
 	public String getTags() {
@@ -455,4 +490,29 @@ public class ShopifyOrder {
 	public void setRefunds(final List<ShopifyRefund> refunds) {
 		this.refunds = refunds;
 	}
+
+	public String getInventoryBehaviour() {
+		return inventoryBehaviour;
+	}
+
+	public void setInventoryBehaviour(String inventoryBehaviour) {
+		this.inventoryBehaviour = inventoryBehaviour;
+	}
+
+	public boolean isSendReceipt() {
+		return sendReceipt;
+	}
+
+	public void setSendReceipt(boolean sendReceipt) {
+		this.sendReceipt = sendReceipt;
+	}
+
+	public boolean isSendFulfillmentReceipt() {
+		return sendFulfillmentReceipt;
+	}
+
+	public void setSendFulfillmentReceipt(boolean sendFulfillmentReceipt) {
+		this.sendFulfillmentReceipt = sendFulfillmentReceipt;
+	}
+
 }
