@@ -629,6 +629,16 @@ public class ShopifySdk {
 		return shopifyOrderRootResponse.getOrder();
 	}
 
+	/**
+	 * Retrieve only orders specified by a comma-separated list of order IDs.<br>
+	 * Only 250 orders can be loaded at once
+	 */
+	public ShopifyPage<ShopifyOrder> getOrdersByIds(final String orderIds) {
+		final Response response = get(buildOrdersEndpoint().queryParam("ids", orderIds)
+				.queryParam(STATUS_QUERY_PARAMETER, ANY_STATUSES).queryParam(LIMIT_QUERY_PARAMETER, 250));
+		return getOrders(response);
+	}
+
 	public List<ShopifyTransaction> getOrderTransactions(final String orderId) {
 		final Response response = get(buildOrdersEndpoint().path(orderId).path(TRANSACTIONS));
 
