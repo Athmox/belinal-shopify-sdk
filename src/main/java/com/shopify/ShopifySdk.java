@@ -144,6 +144,7 @@ public class ShopifySdk {
 	static final String LIMIT_QUERY_PARAMETER = "limit";
 	static final String PAGE_INFO_QUERY_PARAMETER = "page_info";
 	static final String STATUS_QUERY_PARAMETER = "status";
+	static final String FINANCIAL_STATUS_QUERY_PARAMETER = "financial_status";
 	static final String ANY_STATUSES = "any";
 	static final String CREATED_AT_MIN_QUERY_PARAMETER = "created_at_min";
 	static final String CREATED_AT_MAX_QUERY_PARAMETER = "created_at_max";
@@ -636,6 +637,21 @@ public class ShopifySdk {
 	public ShopifyPage<ShopifyOrder> getOrdersByIds(final String orderIds) {
 		final Response response = get(buildOrdersEndpoint().queryParam("ids", orderIds)
 				.queryParam(STATUS_QUERY_PARAMETER, ANY_STATUSES).queryParam(LIMIT_QUERY_PARAMETER, 250));
+		return getOrders(response);
+	}
+
+	public ShopifyPage<ShopifyOrder> getCancelledOrdersStartingAt(final DateTime mininumCreationDate) {
+		final Response response = get(buildOrdersEndpoint().queryParam(LIMIT_QUERY_PARAMETER, 250)
+				.queryParam(CREATED_AT_MIN_QUERY_PARAMETER, mininumCreationDate.toString())
+				.queryParam(STATUS_QUERY_PARAMETER, "cancelled"));
+		return getOrders(response);
+	}
+
+	public ShopifyPage<ShopifyOrder> getRefundedOrdersStartingAt(final DateTime mininumCreationDate) {
+		final Response response = get(buildOrdersEndpoint().queryParam(STATUS_QUERY_PARAMETER, ANY_STATUSES)
+				.queryParam(LIMIT_QUERY_PARAMETER, 250)
+				.queryParam(CREATED_AT_MIN_QUERY_PARAMETER, mininumCreationDate.toString())
+				.queryParam(FINANCIAL_STATUS_QUERY_PARAMETER, "refunded"));
 		return getOrders(response);
 	}
 
