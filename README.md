@@ -1,5 +1,7 @@
 # Shopify SDK
 
+This is a fork from ChannelApe/shopify-sdk. Changed to optimize for my use.
+
 Java SDK for Shopify REST APIs
 
 | Service   | Develop | Master |
